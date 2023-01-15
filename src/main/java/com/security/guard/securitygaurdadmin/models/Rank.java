@@ -11,13 +11,13 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@Table
+@Table(name="rank_table")
 @Entity
 public class Rank {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY,generator = "rank")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String rank;
+	private String rankName;
 	private int minimumHours;
 	private int leaveDays;
 

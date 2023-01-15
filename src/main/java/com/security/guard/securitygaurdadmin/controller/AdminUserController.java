@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.security.guard.securitygaurdadmin.models.AdminUser;
@@ -42,11 +41,7 @@ public class AdminUserController {
 	@Autowired
 	AuthenticationManager authenticationManager;
 	
-	@RequestMapping("/")
-	public String greeting() {
-		return "Hello, World";
-	}
-
+	
 	@PostMapping("/adminuser")
 	public ResponseEntity<AdminUser> saveUser(@RequestBody AdminUser user) {
 		try {

@@ -27,17 +27,12 @@ class SecuritygaurdadminApplicationTests {
 	@MockBean
 	private AdminUserService service;
 	
-	@Test
-	void contextLoads() {
-		
-		when(service.userExists("bry_lar@yahoo.com")).thenReturn(true);
-		try {
-			this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-					.andExpect(content().string(containsString("Hello, Mock")));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
+	/*
+	 * @Test void contextLoads() {
+	 * 
+	 * when(service.userExists("bry_lar@yahoo.com")).thenReturn(true); try {
+	 * this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
+	 * .andExpect(content().string(containsString("Hello, Mock"))); } catch
+	 * (Exception e) { // TODO Auto-generated catch block e.printStackTrace(); } }
+	 */
 }

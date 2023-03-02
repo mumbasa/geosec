@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.security.guard.securitygaurdadmin.helpers.Utilities;
 import com.security.guard.securitygaurdadmin.models.Guard;
 import com.security.guard.securitygaurdadmin.models.Supervisor;
 import com.security.guard.securitygaurdadmin.service.GuardService;
@@ -36,14 +37,13 @@ public class SupervisorController {
 
 	@Value("${file.upload-dir}")
 	String UPLOAD_FOLDER;
+	@Autowired
+	Utilities utilities;
 	@PostMapping("/supervisor")
 	public ResponseEntity<Supervisor> saveSupervisor(@RequestBody Supervisor supervisor){
 		supervisor.setDateAdded(LocalDateTime.now());
 		try {
-			byte[] decodedBytes = Base64.getDecoder().decode(supervisor.getPicture());
-			String fileName= System.currentTimeMillis()+supervisor.getFirstName();
-			FileUtils.writeByteArrayToFile(new File(UPLOAD_FOLDER+fileName), decodedBytes);
-			supervisor.setPicture(fileName);
+		utilities.getSimImage(supervisor);
 			return new ResponseEntity<Supervisor>(supervisorService.saveSupervisor(supervisor), HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception

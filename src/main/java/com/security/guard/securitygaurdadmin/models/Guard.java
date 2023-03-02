@@ -43,6 +43,8 @@ public class Guard {
 	private String address;
 	private String dateEmployed;
 	private int status;
+	private String ssn;
+	private String ghanaCard;
 	
 	@ManyToOne
 	@JoinColumn(name="branch_id")

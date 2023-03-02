@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.security.guard.securitygaurdadmin.helpers.Utilities;
 import com.security.guard.securitygaurdadmin.models.Client;
 import com.security.guard.securitygaurdadmin.models.Post;
 import com.security.guard.securitygaurdadmin.models.PostManager;
@@ -41,8 +42,10 @@ public class ClientService {
 	@Autowired
 	PostShiftSettingRepository postShiftSettingRepository;
 	
-	
+	@Autowired
+	Utilities utilities;
 	public Client saveClient(Client client) {
+		utilities.getSimImage(client);
 		client.setStatus(1);
 		return clientRepository.save(client);
 		

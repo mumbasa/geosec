@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import com.github.kshashov.telegram.api.MessageType;
 import com.github.kshashov.telegram.api.TelegramMvcController;
 import com.github.kshashov.telegram.api.TelegramRequest;
-import com.github.kshashov.telegram.api.bind.annotation.BotController;
 import com.github.kshashov.telegram.api.bind.annotation.BotPathVariable;
 import com.github.kshashov.telegram.api.bind.annotation.BotRequest;
 import com.github.kshashov.telegram.api.bind.annotation.request.MessageRequest;
@@ -28,7 +27,7 @@ import com.security.guard.securitygaurdadmin.models.Guard;
 import com.security.guard.securitygaurdadmin.service.AttendanceService;
 import com.security.guard.securitygaurdadmin.service.GuardService;
 
-@BotController
+//@BotController
 public class ClientBotController implements TelegramMvcController {
 	@Autowired
 	GuardService guardService;

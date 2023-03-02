@@ -31,7 +31,7 @@ import com.security.guard.securitygaurdadmin.service.AttendanceService;
 import com.security.guard.securitygaurdadmin.service.GuardService;
 
 
-@BotController
+//@BotController
 public class GeotGuardBotController implements TelegramMvcController {
 	@Autowired
 	GuardService guardService;

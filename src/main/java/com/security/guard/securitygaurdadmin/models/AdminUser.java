@@ -82,7 +82,7 @@ public class AdminUser implements UserDetails{
 
 	@Override
 	public String toString() {
-		return "AdminUser [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role
+		return "AdminUser [id=" + id + ", username=" + username + ", password=" + password + ", token=" + token
 				+ ", picture=" + picture + ", name=" + name + ", status=" + status + ",  ]";
 	}
 

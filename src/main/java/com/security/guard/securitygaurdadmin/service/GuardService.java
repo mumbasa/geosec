@@ -31,10 +31,15 @@ public class GuardService {
 		return guardRepository.findByContact(contact);
 	}
 
+	public Optional<Guard> findGuardById(long contact) {
+		return guardRepository.findById(contact);
+	}
+
+	
+
 	public Optional<Guard> findGuard(long contact) {
 		return guardRepository.findByTelegramId(contact);
 	}
-
 
 	public Page<Guard> getAllGuards(int page,int size) {
 		return guardRepository.findAll(PageRequest.of(page, size));

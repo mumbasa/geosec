@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.security.guard.securitygaurdadmin.helpers.Utilities;
 import com.security.guard.securitygaurdadmin.models.AdminUser;
 import com.security.guard.securitygaurdadmin.models.ResponseMessage;
 import com.security.guard.securitygaurdadmin.service.AdminUserService;
@@ -40,22 +41,23 @@ public class AdminUserController {
 
 	@Autowired
 	AuthenticationManager authenticationManager;
-	
-	
+
+	@Autowired
+	Utilities utilities;
+
 	@PostMapping("/adminuser")
 	public ResponseEntity<AdminUser> saveUser(@RequestBody AdminUser user) {
+		
 		try {
-		byte[] decodedBytes = Base64.getDecoder().decode(user.getPicture());
-		String fileName = System.currentTimeMillis() + user.getName();
-		FileUtils.writeByteArrayToFile(new File(UPLOAD_FOLDER + fileName), decodedBytes);
-		user.setPicture(fileName);
-		return new ResponseEntity<AdminUser>(userService.saveUser(user), HttpStatus.OK);
-		}catch (Exception e) {
+			utilities.getSimImage(user);
+
+			return new ResponseEntity<AdminUser>(userService.saveUser(user), HttpStatus.OK);
+		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<AdminUser>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@GetMapping("/adminusers")
 	public ResponseEntity<List<AdminUser>> adminUsers() {
 		return new ResponseEntity<List<AdminUser>>(userService.getAllUsers(), HttpStatus.OK);
@@ -78,16 +80,17 @@ public class AdminUserController {
 			message.setPayload(details.get());
 			message.setMessage("User found Successfully");
 			message.setStatusCode(200);
+			System.err.println(details);
 			return new ResponseEntity<ResponseMessage>(message, HttpStatus.OK);
 		} else {
 			// TODO:ser handle exception
 			message.setStatusCode(500);
 			message.setMessage("Wrong credentials");
-			return new ResponseEntity<ResponseMessage>(message,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<ResponseMessage>(message, HttpStatus.BAD_REQUEST);
 		}
 
 	}
-	
+
 	@PostMapping("/authenticate")
 	public ResponseEntity<AdminUser> logins(@RequestBody AdminUser user) {
 		ResponseMessage message = new ResponseMessage();
@@ -113,6 +116,5 @@ public class AdminUserController {
 		}
 
 	}
-
 
 }

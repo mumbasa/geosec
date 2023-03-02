@@ -22,7 +22,7 @@ import com.security.guard.securitygaurdadmin.models.Guard;
 import com.security.guard.securitygaurdadmin.service.GuardService;
 
 @RestController
-@CrossOrigin
+
 @RequestMapping("/v1/api")
 public class GuardController {
 
